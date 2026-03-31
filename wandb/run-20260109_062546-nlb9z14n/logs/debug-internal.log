@@ -1,0 +1,63 @@
+2026-01-09 06:25:46,539 INFO    StreamThr :93856 [internal.py:wandb_internal():87] W&B internal server running at pid: 93856, started at: 2026-01-09 06:25:46.539401
+2026-01-09 06:25:46,541 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: status
+2026-01-09 06:25:46,543 INFO    WriterThread:93856 [datastore.py:open_for_write():85] open: E:\Python_project\CamoDiffusion\CamoDiffusion-main\wandb\run-20260109_062546-nlb9z14n\run-nlb9z14n.wandb
+2026-01-09 06:25:46,546 DEBUG   SenderThread:93856 [sender.py:send():336] send: header
+2026-01-09 06:25:46,546 DEBUG   SenderThread:93856 [sender.py:send():336] send: run
+2026-01-09 06:25:49,958 INFO    SenderThread:93856 [retry.py:__call__():172] Retry attempt failed:
+urllib3.exceptions.SSLError: EOF occurred in violation of protocol (_ssl.c:1122)
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProxyError: ('Unable to connect to proxy', SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1122)')))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /graphql (Caused by ProxyError('Unable to connect to proxy', SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1122)'))))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\wandb\sdk\lib\retry.py", line 131, in __call__
+    result = self._call_fn(*args, **kwargs)
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\wandb\sdk\internal\internal_api.py", line 242, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\wandb\vendor\gql-0.2.0\wandb_gql\client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\wandb\vendor\gql-0.2.0\wandb_gql\client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\wandb\vendor\gql-0.2.0\wandb_gql\transport\requests.py", line 38, in execute
+    request = requests.post(self.url, **post_args)
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\minanaconda\envs\camodiffusion\lib\site-packages\requests\adapters.py", line 671, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /graphql (Caused by ProxyError('Unable to connect to proxy', SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1122)'))))
+2026-01-09 06:25:51,589 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:25:56,643 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:01,698 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:06,742 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:11,795 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:16,829 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:21,880 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:26,935 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:31,987 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:37,031 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:42,062 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: keepalive
+2026-01-09 06:26:47,097 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: cancel
+2026-01-09 06:26:47,097 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: cancel
+2026-01-09 06:26:47,098 DEBUG   SenderThread:93856 [sender.py:send():345] Record cancelled: run
+2026-01-09 06:26:47,099 DEBUG   HandlerThread:93856 [handler.py:handle_request():144] handle_request: status_report
+2026-01-09 06:26:51,137 INFO    MainThread:93856 [internal.py:handle_exit():77] Internal process exited

@@ -1,0 +1,25 @@
+// Random Forest Architecture
+digraph {
+	dpi=300 fontname=Arial rankdir=LR
+	node [fillcolor=white fontname=Arial shape=box style="rounded,filled"]
+	Input [label="Input Data
+(Meteorological + PMF)" color="#1565c0" fillcolor="#e3f2fd" shape=parallelogram]
+	subgraph cluster_forest {
+		bgcolor="#f9fbe7" color=gray label="Random Forest Ensemble (n_estimators=500)" style=dashed
+		Tree1 [label="Decision Tree 1" color="#2e7d32" fillcolor="#a5d6a7" shape=triangle]
+		Tree2 [label="Decision Tree 2" color="#2e7d32" fillcolor="#a5d6a7" shape=triangle]
+		Dots [label="..." shape=plaintext style=""]
+		TreeN [label="Decision Tree N" color="#2e7d32" fillcolor="#a5d6a7" shape=triangle]
+	}
+	Agg [label="Aggregation
+(Average/Mean)" color="#fbc02d" fillcolor="#fff9c4" shape=ellipse]
+	Output [label="Final Prediction
+(PM2.5 Concentration)" color="#7b1fa2" fillcolor="#f3e5f5" shape=parallelogram]
+	Input -> Tree1 [label="Subset 1"]
+	Input -> Tree2 [label="Subset 2"]
+	Input -> TreeN [label="Subset N"]
+	Tree1 -> Agg [label="Pred 1"]
+	Tree2 -> Agg [label="Pred 2"]
+	TreeN -> Agg [label="Pred N"]
+	Agg -> Output
+}

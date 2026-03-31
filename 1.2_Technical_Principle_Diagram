@@ -1,0 +1,43 @@
+// Technical Principle of CamoDiffusion
+digraph CamoDiffusion {
+	dpi=300 nodesep=0.6 rankdir=LR ranksep=0.8
+	node [fontname=SimHei shape=rect style="rounded,filled"]
+	edge [fontname=SimHei]
+	subgraph cluster_input {
+		style=invis
+		Image [label="原始图像
+(Input Image)
+$I \in R^{H 	imes W 	imes 3}$" fillcolor="#E3F2FD" shape=note]
+		Noise [label="高斯噪声/噪声掩码
+(Noisy Mask)
+$x_t$" fillcolor="#F3E5F5" shape=circle]
+		Time [label="时间步嵌入
+(Time Embedding)
+$t$" fillcolor="#ECEFF1" shape=ellipse]
+	}
+	subgraph cluster_backbone {
+		color=gray50 label="特征提取网络 (PVT v2 Backbone)" style=dashed
+		PVT [label="Pyramid Vision
+Transformer
+(PVT v2-B4)" fillcolor="#FFF9C4"]
+		Feats [label="多尺度特征金字塔
+(Multi-scale Features)
+$\{C_1, C_2, C_3, C_4\}$" fillcolor="#FFF59D" shape=folder]
+		Image -> PVT [label=" 输入"]
+		PVT -> Feats [label=" 提取"]
+	}
+	subgraph cluster_denoise {
+		color="#4CAF50" label="去噪网络 (Denoising U-Net)" style=bold
+		UNet [label="条件 U-Net
+(Conditional U-Net)
+Encoder $\leftrightarrow$ Decoder" fillcolor="#C8E6C9" height=1.0]
+		Output [label="预测噪声/掩码
+(Predicted Mask)
+$\hat{x}_0$ or $\epsilon$" fillcolor="#FFCCBC" shape=note]
+	}
+	Noise -> UNet [label=" 输入 $x_t$"]
+	Time -> UNet [label=" 注入"]
+	Feats -> UNet [label=" 条件注入
+(Cross-Attention/Concat)" color="#1565C0" penwidth=2.0 style=dashed]
+	UNet -> Output [label=" 重建"]
+}
